@@ -1,0 +1,191 @@
+:root {
+  --luz-cuidado: #916b38;
+  --folha-cuidado: #496747;
+  --papel-cuidado: #f6f1df;
+  --tinta-cuidado: #304431;
+}
+
+body {
+  background: radial-gradient(ellipse at 15% 0, #fff9e7, transparent 65%),
+    linear-gradient(150deg, #f3eedc, #e8ead7 65%, #dddcc4);
+  color: var(--tinta-cuidado);
+}
+
+button { color: #344a35; background: #f4f1e4; border-color: #b4bea3; }
+
+button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--luz-cuidado);
+  outline-offset: 4px;
+}
+
+[data-base-semente="S1"] { --cor-semente: #a8cb83; }
+[data-base-semente="S2"] { --cor-semente: #e68e7f; }
+[data-base-semente="S3"] { --cor-semente: #8fbde1; }
+[data-base-semente="S4"] { --cor-semente: #c19c78; }
+[data-base-semente="S5"] { --cor-semente: #edcf79; }
+
+.eyebrow { color: var(--luz-cuidado); letter-spacing: .13em; }
+.linhagem-topo { color: #5b6b50; font-size: 13px; }
+.moedas { color: #6f512c; background: #f5e6bd; border-color: #c6af76; }
+.guia-cultivo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  margin-bottom: 18px;
+  border: 1px solid #c1c7a4;
+  border-radius: 22px;
+  background: radial-gradient(ellipse at 95% 20%, #d5ddb7, transparent 65%), #faf5e5;
+}
+.etiqueta-cuidado { display: block; font-size: 10px; letter-spacing: .14em; color: #7b5c36; }
+.guia-cultivo h2 { margin: 9px 0 8px; font-size: clamp(22px, 3vw, 30px); font-weight: 650; }
+.guia-cultivo p, .momento-cultivo p { max-width: 62ch; margin: 0; line-height: 1.6; color: #52634a; font-size: 14px; }
+.guia-cultivo button, .momento-cultivo button {
+  min-height: 44px;
+  border: 1px solid #4b6846;
+  border-radius: 12px;
+  background: #496747;
+  color: #fffbea;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.guia-cultivo button { flex-shrink: 0; }
+.momento-cultivo {
+  width: 100%;
+  padding: 18px;
+  text-align: left;
+  border: 1px solid #bac69e;
+  border-radius: 16px;
+  background: #eef0da;
+}
+.momento-cultivo strong { display: block; font-size: 17px; line-height: 1.35; margin: 9px 0; color: #3e583b; }
+.momento-cultivo button { margin-top: 14px; width: 100%; }
+.cena-planta-v084[data-base-semente] .identidade-planta-v084 strong { color: color-mix(in srgb, var(--cor-semente), #203521 60%); }
+.modulo-ativo-v081[data-base-semente] { border-top: 3px solid var(--cor-semente); }
+.modulo-ativo-v081[data-base-semente] > strong { color: color-mix(in srgb, var(--cor-semente), #203521 60%); }
+.modulo-ativo-v081[data-base-semente] .luz-status-v081 { color: var(--cor-semente); }
+.laboratorio-v081 .porta-bancada-v081 { top: 170px; }
+.modulo-livre-v081 .icone-modulo-v081 {
+  position: relative; display: grid; place-items: center; width: 48px; height: 48px; font-size: 0;
+}
+.modulo-livre-v081 .icone-modulo-v081::before {
+  content: ""; width: 30px; height: 31px; display: block;
+  background: linear-gradient(100deg, #bb8868, #94644e);
+  border-top: 7px solid #4d3c30; border-radius: 4px 4px 11px 11px;
+  box-shadow: 0 6px 10px #00000025;
+}
+.opcao-contextual-v082[data-base-semente] { border-color: color-mix(in srgb, var(--cor-semente), transparent 60%); }
+.opcao-contextual-v082[data-base-semente].selecionada { border: 2px solid var(--cor-semente); background: #e3ead4; }
+.opcao-contextual-v082[data-base-semente] .icone-opcao-v082 { font-size: 0; display: grid; place-items: center; min-height: 37px; }
+.opcao-contextual-v082[data-base-semente] .icone-opcao-v082::before {
+  content: "";
+  display: block;
+  width: 22px;
+  height: 31px;
+  border-radius: 65% 35% 60% 40%;
+  transform: rotate(25deg);
+  background: linear-gradient(110deg, var(--cor-semente) 45%, #ffffff70 48%, var(--cor-semente) 53%);
+  box-shadow: inset -4px -3px 0 #00000028, 0 3px 10px #00000020;
+}
+.opcao-contextual-v082[data-base-semente] strong { color: color-mix(in srgb, var(--cor-semente), #203521 60%); }
+.janela-contextual-v082 { max-height: calc(100dvh - 32px); overflow-y: auto; }
+.overlay-interno-v082:has(> .janela-contextual-v082) {
+  position: fixed; inset: 0; padding: 16px; border-radius: 0;
+}
+body:has(.overlay-interno-v082 > .janela-contextual-v082) #botaoInventarioV0861 { visibility: hidden; }
+.janela-contextual-v082 .play-contextual-v082 { min-height: 48px; font-size: 14px; }
+.janela-contextual-v082 .play-contextual-v082:not(:disabled) { background: #496747; color: #fffbea; }
+.janela-contextual-v082 .etapa-contextual-v082 h3 { font-size: 14px; }
+.janela-contextual-v082 .opcao-contextual-v082 strong { font-size: 14px; line-height: 1.4; }
+.janela-contextual-v082 .opcao-contextual-v082 small { font-size: 12px; }
+.janela-contextual-v082 .opcao-contextual-v082 { min-height: 66px; }
+.janela-contextual-v082 .resumo-contextual-v082 { font-size: 12px; }
+.producao-cultivo { border: 1px solid #72875170; }
+.producao-cultivo button:not(:disabled) { background: #496747; color: #fffbea; border-color: #496747; font-weight: 700; }
+.metricas-estacao-v084 .metrica-v084 span { font-size: 12px; }
+.metricas-estacao-v084 .metrica-v084 strong { font-size: 20px; }
+.controle-titulo-v084 strong, .regar-v084 strong, .avancar-periodo-v084 strong { font-size: 14px; }
+.controle-titulo-v084 small, .regar-v084 small, .avancar-periodo-v084 small { font-size: 12px; line-height: 1.5; }
+.detalhes-planta-v084 summary { font-size: 14px; }
+
+/* Terra, folhas e claridade: os horários mudam a luz, sem escurecer a leitura. */
+.ambiente-mundo-v081.periodo-manha { --parede-1: #e6edcf; --parede-2: #c6d6b6; --luz-mundo: #fff5cba6; }
+.ambiente-mundo-v081.periodo-tarde { --parede-1: #e7dfbf; --parede-2: #c5d0aa; --luz-mundo: #ffedba80; }
+.ambiente-mundo-v081.periodo-noite { --parede-1: #d4ddca; --parede-2: #b8cbb7; --luz-mundo: #dce8db80; }
+.ambiente-mundo-v081.periodo-madrugada { --parede-1: #cddacb; --parede-2: #b6c9b9; --luz-mundo: #e4eee880; }
+.ambiente-mundo-v081 { border-color: #acbb9e; box-shadow: inset 0 0 70px #6d815312, 0 14px 35px #67765314; }
+.modulo-cultivo-v081, .porta-bancada-v081 { background: #f4f1e4; border-color: #adb99d; color: #344a35; box-shadow: 0 6px 16px #596b4614; }
+.modulo-bloqueado-v081 { opacity: .62; }
+.numero-modulo-v081, .modulo-cultivo-v081 > span { opacity: 1; color: #617054; }
+.piso-lab-v081 { background: repeating-linear-gradient(90deg, transparent 0 85px, #8e735426 86px 88px), #b9aa86; }
+.dica-mundo-v081 { color: #42563d; opacity: 1; }
+.janela-lab-v081 { background: #ae9674; border-color: #917d61; }
+.luz-teto-v081 { background: #fff4d2; box-shadow: 0 15px 60px #fff0bdb3; }
+.estacao-v081.estacao-v084 { background: linear-gradient(145deg, var(--parede-1), var(--parede-2)); }
+.cena-planta-v084 { background: radial-gradient(ellipse at 45% 10%, #fff7d5cc, transparent 65%), #e4ead5; border-color: #b6c3a1; box-shadow: inset 0 0 40px #7992590d; }
+.luz-cultivo-v084 { background: #fff8d9; box-shadow: 0 24px 65px #fff0b8; }
+.controle-bloco-v084, .metrica-v084, .detalhes-planta-v084 { background: #f7f4e7; color: #354b36; border-color: #bdc6aa; }
+.rodape-cena-v084, .estagio-planta-v084 { background: #d3dec1; color: #354b36; }
+.identidade-planta-v084 span, .controle-titulo-v084 small, .metrica-v084 span { color: #56654c; opacity: 1; }
+.regar-v084 { background: #e0ebe0; color: #315239; border-color: #a3bea3; }
+.avancar-periodo-v084 { background: #e5d8b6; color: #534329; border-color: #baa778; }
+.velocidades-v084 button.ativa { background: #d4e0bb; color: #344c30; border-color: #7e9867; }
+.chip-alerta-v084 { background: #faf5e5; color: #4d5339; box-shadow: none; }
+.janela-contextual-v082 { background: #faf6e7; border-color: #b6c2a0; color: #354b36; box-shadow: 0 20px 70px #35432938; }
+.opcao-contextual-v082 { background: #f0efdf; color: #344a35; }
+.opcao-contextual-v082 small, .titulo-contextual-v082 span { opacity: 1; color: #5b6b4e; }
+.resumo-contextual-v082 { background: #e7ead8; }
+.overlay-interno-v082:has(> .janela-contextual-v082) { background: #46583e66; }
+.loja-card, .log-card { background: #faf6e7; color: #344a35; border-color: #bdc7a8; }
+.loja-card .card-titulo span, .log-card .card-titulo span { color: #657252; }
+#btnNovoJogo { color: #52634a; }
+.placa-lab-v081 > span, .porta-bancada-v081 small { opacity: 1; color: #596c50; }
+.caixa-op-v0861, .caixa-grupo-v0861, .caixa-stack-v0862,
+.caixa-venda-v0864, .caixa-transferencia-v0865, .caixa-preparo-solo-v0870,
+.ficha-solo-v0871, .caixa-modal-jardim-v088, .ficha-elevada-v0863 > div,
+.storage-taxonomico-v0862 {
+  color: #354b36; background: #faf6e7; border-color: #b7c3a1;
+  box-shadow: 0 20px 60px #35432930;
+}
+.stack-taxonomico-v0862 { background: #eef0de; border-color: #bfc9ad; }
+.abas-op-v0861 button.ativa { background: #dce6c9; border-color: #8ca474; }
+.caixa-op-v0861 small, .caixa-op-v0861 > footer, .abas-op-v0861 button span,
+.stack-linhagem-v0862 { color: #5b6b4e; opacity: 1; }
+.jardim-v088 { background: #e5ebd5; color: #354b36; border-color: #b8c4a2; }
+.slot-jardim-v088 { color: #354b36; background: #f5f1e1; border-color: #aebc98; }
+.preco-venda-v0864, .resumo-venda-v0864, .moedas-op-v0861 { background: #eee4c7; color: #6b502e; }
+.confirmar-venda-v0864, .confirmar-preparo-solo-v0870:not(:disabled) { background: #496747; color: #fffbea; }
+.botao-global-v0861 {
+  top: auto; bottom: 18px; right: 18px; min-height: 44px;
+  padding: 12px 16px; font-size: 13px;
+  background: #496747; color: #fffbea; border-color: #6d835a;
+  box-shadow: 0 5px 18px #35432928;
+}
+
+@media (max-width: 620px) {
+  .guia-cultivo { align-items: stretch; flex-direction: column; gap: 16px; padding: 20px; }
+  .guia-cultivo button { width: 100%; }
+  .momento-cultivo { margin-top: 12px; }
+  .opcao-contextual-v082 strong { font-size: 13px; }
+  .opcao-contextual-v082 small { font-size: 12px; }
+  .janela-contextual-v082 .grid-contextual-v082 { grid-template-columns: 1fr; }
+  .topo-direita #btnNovoJogo { font-size: 12px; white-space: nowrap; padding: 10px; }
+  .laboratorio-v081 { min-height: 620px; }
+  .laboratorio-v081 .porta-bancada-v081 { top: 145px; left: 20px; }
+  .laboratorio-v081 .modulos-laboratorio-v081 {
+    top: 255px; bottom: auto; left: 16px; right: 16px;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;
+  }
+  .laboratorio-v081 .modulo-cultivo-v081 { min-height: 142px; padding: 10px 6px; }
+  .laboratorio-v081 .modulo-cultivo-v081 strong { font-size: 12px; }
+  .laboratorio-v081 .modulo-cultivo-v081 > span { font-size: 11px; opacity: .8; }
+  .laboratorio-v081 .numero-modulo-v081 { font-size: 9px; }
+  .laboratorio-v081 .modulo-bloqueado-v081 { min-height: 104px; }
+  .laboratorio-v081 .modulo-bloqueado-v081 .icone-modulo-v081 { margin: 2px; font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .guia-cultivo *, .momento-cultivo *, .opcao-contextual-v082 { transition: none; }
+}

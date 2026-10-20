@@ -1,0 +1,612 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    A Plantinha — Universo V0.8.9
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+  <link rel="stylesheet" href="experiencia.css" />
+  <link rel="stylesheet" href="caderno.css" />
+</head>
+
+<body>
+
+<main class="app">
+
+  <header class="topo">
+
+    <div>
+
+      <div class="eyebrow">
+        PLANTINHA UNIVERSE V0.8.9 GENESIS
+      </div>
+
+      <h1>
+        A Plantinha
+      </h1>
+
+      <div class="linhagem-topo">
+
+        <span id="linhagemTopo">
+          Linhagem inicial
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="topo-direita">
+
+      <div class="moedas">
+        🪙 <span id="moedas">30</span>
+      </div>
+
+      <button
+        id="btnNovoJogo"
+        class="botao-secundario"
+      >
+        Reiniciar universo
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <section class="painel-jogo">
+
+    <div
+      class="ambiente"
+      id="ambiente"
+    >
+
+      <div class="janela">
+
+        <div class="ceu"></div>
+
+        <div class="moldura-v"></div>
+
+        <div class="moldura-h"></div>
+
+      </div>
+
+
+      <div
+        class="lampada"
+        id="lampada"
+      >
+        💡
+      </div>
+
+
+      <div class="planta-area">
+
+        <div
+          class="status-estagio"
+          id="statusEstagio"
+        >
+          SEMENTE
+        </div>
+
+
+        <div
+          class="planta"
+          id="plantaVisual"
+        >
+
+          <div class="semente-v3"></div>
+
+        </div>
+
+
+        <div class="vaso">
+
+          <div
+            class="terra"
+            id="terraVisual"
+          ></div>
+
+
+          <div class="umidade-vaso">
+
+            <div class="umidade-cabecalho">
+
+              <span>
+                Umidade
+              </span>
+
+              <strong id="umidadeTexto">
+                55%
+              </strong>
+
+            </div>
+
+
+            <div class="barra-umidade">
+
+              <div
+                class="barra-umidade-preenchimento"
+                id="barraUmidade"
+              ></div>
+
+            </div>
+
+
+            <div
+              class="estado-umidade"
+              id="estadoUmidade"
+            >
+              adequado
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="acoes-rapidas">
+
+        <button id="btnAgua">
+          💧 Regar
+        </button>
+
+        <button id="btnLuz">
+          ☀️ Luz natural
+        </button>
+
+        <button id="btnCiclo">
+          ⏩ Passar ciclo
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <aside class="lateral">
+
+      <section class="card">
+
+        <h2>
+          Estado da planta
+        </h2>
+
+
+        <div class="grid-info">
+
+          <div>
+
+            <span>
+              Estágio
+            </span>
+
+            <strong id="estagio">
+              SEMENTE
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Idade
+            </span>
+
+            <strong id="idade">
+              0
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Solo
+            </span>
+
+            <strong id="soloAtual">
+              COMUM
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Geração
+            </span>
+
+            <strong id="geracao">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <h2>
+          DNA atual
+        </h2>
+
+
+        <div class="dna-grid">
+
+          <div>
+
+            <span>
+              Vigor
+            </span>
+
+            <strong id="dnaVigor">
+              2
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Sombra
+            </span>
+
+            <strong id="dnaSombra">
+              1
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Seca
+            </span>
+
+            <strong id="dnaSeca">
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <h2>
+          Inventário
+        </h2>
+
+        <div
+          id="inventario"
+          class="inventario"
+        ></div>
+
+      </section>
+
+
+      <section class="card">
+
+        <h2>
+          Planta madura
+        </h2>
+
+
+        <div class="acoes-adultas">
+
+          <button id="btnColher">
+            🌼 Colher
+          </button>
+
+          <button id="btnSementeDNA">
+            🧬 Gerar Semente-DNA
+          </button>
+
+          <button id="btnVenderFruto">
+            🍎 Vender fruto
+          </button>
+
+          <button id="btnVenderFlor">
+            🌸 Vender flor
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <section class="card">
+
+        <h2>
+          Reciclagem
+        </h2>
+
+
+        <div class="acoes-adultas">
+
+          <button id="btnSoloCasca">
+            🍂 Casca + solo
+          </button>
+
+          <button id="btnSoloPetala">
+            🌺 Pétala + solo
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <section class="card card-linhagem">
+
+        <h2>
+          Próxima geração
+        </h2>
+
+        <p class="texto-ajuda">
+          Depois de produzir uma Semente-DNA,
+          você pode plantar sua descendente.
+        </p>
+
+        <button id="btnPlantarDescendente">
+          🌱 Plantar descendente
+        </button>
+
+      </section>
+
+    </aside>
+
+  </section>
+
+
+  <section class="card loja-card">
+
+    <div class="titulo-linha">
+
+      <h2>
+        Lojinha
+      </h2>
+
+      <span>
+        Itens básicos
+      </span>
+
+    </div>
+
+
+    <div class="loja-grid">
+
+      <button
+        data-compra="SOLO_COMUM"
+        data-preco="3"
+      >
+
+        <strong>
+          Solo comum
+        </strong>
+
+        <small>
+          3 moedas
+        </small>
+
+      </button>
+
+
+      <button
+        data-compra="SOLO_MINERAL"
+        data-preco="7"
+      >
+
+        <strong>
+          Solo mineral
+        </strong>
+
+        <small>
+          7 moedas
+        </small>
+
+      </button>
+
+
+      <button
+        data-compra="SOLO_ORGANICO"
+        data-preco="7"
+      >
+
+        <strong>
+          Solo orgânico
+        </strong>
+
+        <small>
+          7 moedas
+        </small>
+
+      </button>
+
+
+      <button
+        data-compra="LAMPADA_FRACA"
+        data-preco="12"
+      >
+
+        <strong>
+          Lâmpada fraca
+        </strong>
+
+        <small>
+          12 moedas
+        </small>
+
+      </button>
+
+
+      <button
+        data-compra="LAMPADA_FORTE"
+        data-preco="25"
+      >
+
+        <strong>
+          Lâmpada forte
+        </strong>
+
+        <small>
+          25 moedas
+        </small>
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="card log-card">
+
+    <div class="titulo-linha">
+
+      <h2>
+        Diário da planta
+      </h2>
+
+      <span>
+        salvamento automático
+      </span>
+
+    </div>
+
+    <div id="log"></div>
+
+  </section>
+
+</main>
+
+
+<div
+  class="modal escondido"
+  id="modalDescendente"
+>
+
+  <div class="modal-caixa">
+
+    <h2>
+      Plantar nova geração
+    </h2>
+
+    <p>
+      Escolha o solo da descendente.
+    </p>
+
+    <div
+      id="solosDisponiveis"
+      class="solos-modal"
+    ></div>
+
+    <button
+      class="botao-secundario"
+      id="btnCancelarDescendente"
+    >
+      Cancelar
+    </button>
+
+  </div>
+
+</div>
+
+
+<script src="app.js"></script>
+<script src="health_v042.js"></script>
+<script src="tempo_v050.js"></script>
+<script src="agua_tempo_v051.js"></script>
+<script src="sementes_v060.js"></script>
+<script src="sinais_v061.js"></script>
+<script src="inventario_v070.js"></script>
+<script src="colheita_v071.js"></script>
+<script src="pilhas_v072.js"></script>
+<script src="quarto_v080.js"></script>
+<script src="laboratorio_v081.js"></script>
+<script src="encaixe_v082.js"></script>
+<script src="planta_v083.js"></script>
+<script src="migracao_v0831.js"></script>
+<script src="teste_sync_v0832.js"></script>
+<script src="tempo_quarto_v0833.js"></script>
+<script src="estacao_v084.js"></script>
+
+<script src="descarte_v085.js"></script>
+  <script src="armazenamento_v086.js"></script>
+<script src="inventario_operacional_v0861.js"></script>
+<script src="inventario_v0863.js"></script>
+<script src="inventario_taxonomico_v0862.js"></script>
+<script src="inventario_v08631.js"></script>
+<script src="inventario_v0864.js"></script>
+<script src="transferencia_v0865.js"></script>
+<script src="inspecao_v0866.js"></script>
+<script src="acoes_item_v0867.js"></script>
+<script src="acoes_ficha_v0868.js"></script>
+<script src="fluxo_semente_v08691.js"></script>
+<script src="processos_item_v0870.js"></script>
+<script src="solo_item_v0871.js"></script>
+<script src="fluxo_solo_v0872.js"></script>
+<script src="start_v088.js"></script>
+<script src="genesis_v089.js"></script>
+<script src="ciclo_cultivo.js"></script>
+<script src="experiencia_cultivo.js"></script>
+<script src="caderno_descobertas.js"></script>
+<script src="partida.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

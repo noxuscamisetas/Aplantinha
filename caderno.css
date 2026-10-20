@@ -1,0 +1,59 @@
+#atalhoCaderno { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 14px; }
+#abrirPartida { border-radius: 14px; min-height: 46px; cursor: pointer; }
+#suaPartida { box-sizing: border-box; width: min(540px, calc(100vw - 28px)); max-height: calc(100dvh - 28px); overflow: auto; padding: 26px; background: #faf6e7; color: #354b36; border: 1px solid #b6c2a0; border-radius: 22px; }
+#suaPartida::backdrop { background: #33483180; }
+#suaPartida p { line-height: 1.6; }
+#suaPartida input { display: block; max-width: 100%; margin: 12px 0; }
+#suaPartida button { min-height: 44px; margin: 8px 0; cursor: pointer; }
+#abrirCaderno { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 18px; min-height: 46px; padding: 12px 18px; border-radius: 14px; background: #efe5cc; color: #4e5638; border: 1px solid #bdb58e; cursor: pointer; font-weight: 700; }
+#abrirCaderno span { font-size: 12px; font-weight: 400; }
+#cadernoDescobertas { width: min(920px, calc(100vw - 28px)); max-height: calc(100dvh - 28px); padding: 26px; overflow-y: auto; background: #faf6e7; color: #354b36; border: 1px solid #b6c2a0; border-radius: 22px; box-shadow: 0 24px 90px #263c3030; }
+#cadernoDescobertas::backdrop { background: #33483180; backdrop-filter: blur(4px); }
+#cadernoDescobertas button { cursor: pointer; min-height: 44px; }
+.caderno-topo { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; }
+.caderno-topo h2 { margin: 8px 0; font-size: clamp(22px, 4vw, 30px); }
+.caderno-topo p, .caderno-introducao, .caderno-vazio p { color: #5c694f; font-size: 14px; line-height: 1.6; }
+#fecharCaderno { flex-shrink: 0; width: 44px; height: 44px; padding: 0; line-height: 1; border-radius: 50%; font-size: 25px; }
+.caderno-abas { display: flex; gap: 8px; margin: 20px 0; flex-wrap: wrap; }
+.caderno-abas button { padding: 10px 16px; border-radius: 12px; }
+.caderno-abas button[aria-pressed="true"] { background: #496747; color: #fffbea; border-color: #496747; }
+.caderno-vazio { text-align: center; padding: 36px 18px; }
+.caderno-vazio > span { font-size: 68px; color: #788d57; }
+.caderno-vazio h3 { font-size: 21px; }
+.plantas-caderno { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.pagina-planta { padding: 18px; border-radius: 18px; text-align: left; background: #f1f0df; display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.pagina-planta > strong { font-size: 19px; overflow-wrap: anywhere; }
+.pagina-planta > span:not(.etiqueta-cuidado), .pagina-planta small { font-size: 13px; color: #5c694f; }
+.pagina-planta:hover { border-color: #718b58; background: #e8edd5; }
+.retrato-caderno { height: 190px; width: 100%; position: relative; overflow: hidden; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 20%, #fff9d9, transparent 65%), #e2e9cf; border-radius: 14px; }
+.retrato-caderno .planta-procedural-v083 { flex: none; margin: 0; transform: scale(.6); transform-origin: center center; }
+.retrato-caderno .fruto-procedural-v083 { animation: none; }
+.conquistas-caderno { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.conquista-caderno { display: flex; align-items: flex-start; gap: 13px; padding: 18px; border: 1px solid #c8ccb6; border-radius: 15px; background: #f1f0e4; }
+.conquista-caderno.concluida { background: #e5edd6; border-color: #a5b68a; }
+.conquista-caderno h3 { margin: 0 0 8px; font-size: 17px; }
+.conquista-caderno p { margin: 0 0 12px; line-height: 1.5; font-size: 14px; }
+.conquista-caderno small { color: #566d45; }
+.selo-conquista { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #e4e6d2; flex-shrink: 0; }
+.concluida .selo-conquista { background: #496747; color: #fffbea; }
+.detalhe-caderno { display: grid; grid-template-columns: minmax(180px, .65fr) minmax(0, 1.35fr); gap: 24px; margin-top: 18px; }
+.detalhe-caderno h3 { font-size: 25px; margin: 10px 0 18px; overflow-wrap: anywhere; }
+.retrato-caderno.grande { height: 300px; }
+.retrato-caderno.grande .planta-procedural-v083 { transform: scale(.85); }
+.nome-caderno { display: flex; gap: 8px; margin: 8px 0; }
+.nome-caderno input { width: 100%; min-width: 0; min-height: 44px; padding: 10px; border: 1px solid #acb994; background: #fffdf3; border-radius: 10px; color: #354b36; font: inherit; }
+.nome-caderno button { flex-shrink: 0; padding: 10px 13px; border-radius: 10px; }
+#resultadoNomeCaderno { font-size: 13px; color: #496747; }
+.ficha-caderno { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+.ficha-caderno dt { font-size: 12px; color: #607154; }
+.ficha-caderno dd { margin: 5px 0 0; font-size: 15px; }
+.memorias-caderno { padding-left: 20px; font-size: 14px; line-height: 1.65; }
+.genealogia-caderno { overflow-wrap: anywhere; line-height: 1.5; }
+#voltarPaginasCaderno { border-radius: 10px; padding: 8px 12px; }
+@media (max-width: 620px) {
+  #abrirCaderno { width: 100%; justify-content: space-between; }
+  #cadernoDescobertas { padding: 18px; }
+  .conquistas-caderno, .detalhe-caderno { grid-template-columns: 1fr; }
+  .nome-caderno { flex-direction: column; }
+  .detalhe-caderno .retrato-caderno.grande { height: 220px; }
+}
