@@ -78,4 +78,31 @@ htmlPlantaProceduralV083 = function(planta) {
   const corFolha = { S1: '#719956', S2: '#8c9260', S3: '#628c80', S4: '#8b9560', S5: '#9eac58' }[planta.sementeBase] || '#719956';
   return `<div class="planta-procedural-v083 planta-botanica ${estagio.toLowerCase()}" style="--cor-folha:${corFolha};--cor-planta-v083:${visual.cor};--opacidade-v083:${visual.opacidade}"><svg viewBox="0 0 240 250" aria-hidden="true" class="desenho-botanico">${desenho}</svg></div>`;
 };
+function instalarLuzEPerfilCultivo() {
+  if (ambienteAtualV081 !== 'ESTACAO') return;
+  const cultivo = cultivoDoVaso(vasoSelecionadoV081);
+  const controles = document.querySelector('.controles-estacao-v084');
+  if (!cultivo || !controles) return;
+  controles.querySelector('#luzPerfilCultivo')?.remove();
+  const luz = cultivo.luzAmbiente === 'SOMBRA' ? 'SOMBRA' : 'NATURAL';
+  const noite = tempoGlobalV080().luz !== 'SOL';
+  const area = document.createElement('section');
+  area.id = 'luzPerfilCultivo';
+  area.className = 'controle-bloco-v084 luz-perfil-cultivo';
+  area.innerHTML = `<strong>☀️ Lugar do cultivo</strong>
+    <div class="escolha-luz-cultivo" role="group" aria-label="Luz durante o dia">
+      <button type="button" data-luz-cultivo="NATURAL" aria-pressed="${luz === 'NATURAL'}">☀️ Luz natural</button>
+      <button type="button" data-luz-cultivo="SOMBRA" aria-pressed="${luz === 'SOMBRA'}">🌿 Sombra</button>
+    </div>
+    <p>${noite ? 'Agora é noite: a planta repousa. A escolha vale quando o dia chegar.' : luz === 'SOMBRA' ? 'Luz filtrada: plantas com afinidade à sombra aproveitam melhor este lugar.' : 'Claridade natural: favorece o crescimento, especialmente das plantas vigorosas.'}</p>
+    <dl class="genes-cultivo">${[['vigor','Vigor'],['sombra','Sombra'],['seca','Resistência à seca'],['plasticidade','Plasticidade']].map(([chave,nome]) => `<div><dt>${nome}</dt><dd>${geneCultivo(cultivo,chave)}</dd></div>`).join('')}</dl>
+    <small>Plasticidade: ${exposicoesParaAdaptar(cultivo)} períodos vividos em sombra diurna ou seca podem transmitir a adaptação correspondente à descendente. Trocar o lugar sem avançar o tempo não conta.</small>`;
+  controles.insertBefore(area, controles.querySelector('.metricas-estacao-v084')?.nextSibling || controles.firstChild);
+  document.querySelector('.cena-planta-v084').dataset.luzAmbiente = luz;
+  area.querySelectorAll('[data-luz-cultivo]').forEach(botao => {
+    botao.onclick = () => { cultivo.luzAmbiente = botao.dataset.luzCultivo; salvar(); render(); };
+  });
+}
+const eventosAntesDosPerfis = instalarEventosV081;
+instalarEventosV081 = function() { eventosAntesDosPerfis(); instalarLuzEPerfilCultivo(); };
 render();

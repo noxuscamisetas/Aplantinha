@@ -927,6 +927,14 @@ function processarCultivoV080(
   }
   historia[tempo.luz === "SOL" ? "sol" : "lua"]++;
   if (tempo.luz === "LUA") historia.repouso++;
+  const luzEfetiva = luzEfetivaCultivo(cultivo, tempo);
+  let mudouLuz = false;
+  if (luzEfetiva !== "LUA") {
+    if (luzEfetiva === "SOMBRA") historia.sombra++;
+    mudouLuz = Boolean(cultivo.ultimaLuzDiurna && cultivo.ultimaLuzDiurna !== luzEfetiva);
+    if (mudouLuz) historia.mudancasLuz = (historia.mudancasLuz || 0) + 1;
+    cultivo.ultimaLuzDiurna = luzEfetiva;
+  }
   if (cultivo.solo.includes("ADITIVADO") || cultivo.solo === "SOLO_ORGANICO") {
     historia.soloRico++;
   }
@@ -1107,7 +1115,7 @@ function processarCultivoV080(
     "SOL"
   ) {
 
-    ganho += 2;
+    ganho += luzEfetiva === "SOMBRA" ? 2 * geneCultivo(cultivo, "sombra") - 2 : 2;
 
   }
 
@@ -1176,6 +1184,8 @@ function processarCultivoV080(
     );
 
 
+  // Plasticidade responde a uma mudança diurna realmente processada, não a cliques.
+  if (mudouLuz && cultivo.saude > 0) ganho += geneCultivo(cultivo, "plasticidade");
   cultivo.energia +=
     ganho
     *
@@ -1184,7 +1194,8 @@ function processarCultivoV080(
 
   // Saúde zero é colapso reversível, mas não permite crescer.
   if (cultivo.saude > 0) {
-    cultivo.desenvolvimento += perfil.desenvolvimento;
+    const crescimento = desenvolvimentoDoPerfil(cultivo, tempo, configSolo) * perfil.desenvolvimento;
+    cultivo.desenvolvimento = Math.round((cultivo.desenvolvimento + crescimento) * 10000) / 10000;
   }
 
 

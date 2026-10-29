@@ -446,7 +446,7 @@ htmlEstacaoV081 =
 
                 <strong>
                   ${Math.round(
-                    c.desenvolvimento
+                    Math.round(c.desenvolvimento * 10) / 10
                   )}
                 </strong>
 

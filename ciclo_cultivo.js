@@ -16,7 +16,7 @@ function retratoDoCultivo(cultivo) {
     saude: cultivo.saude,
     idade: cultivo.idade ?? cultivo.passosAmbientais,
     solo: cultivo.solo,
-    luz: tempo.luz === "SOL" ? "NATURAL" : "LUA",
+    luz: luzEfetivaCultivo(cultivo, tempo),
     umidade: cultivo.umidade,
     dia: tempo.dia,
     hora: tempo.hora
@@ -69,7 +69,7 @@ function gerarSementeDoCultivo(vasoId) {
   const historia = cultivo.contadoresVida || {};
   const alteracoes = [];
   for (const [campo, nome] of [["sombra", "ADAPTACAO_SOMBRA"], ["seca", "ADAPTACAO_SECA"]]) {
-    if ((historia[campo] || 0) >= 3 && (dna[campo] || 0) < 3) {
+    if ((historia[campo] || 0) >= exposicoesParaAdaptar(cultivo) && (dna[campo] || 0) < 3) {
       dna[campo] = (dna[campo] || 0) + 1;
       alteracoes.push(nome);
     }

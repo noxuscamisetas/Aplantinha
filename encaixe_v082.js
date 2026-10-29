@@ -237,6 +237,7 @@ function renderMontagemInternaV082() {
                     <strong>
                       ${semente.nome}
                     </strong>
+                    <span class="perfil-semente">${semente.geracao ? 'Descendente: conserva o DNA e a história da linhagem.' : descricaoPerfilSemente(semente.base)}</span>
 
                     <small>
                       ${

@@ -70,8 +70,8 @@ function processarVasosPeriodoAtualV0833(
 
 
     /*
-    A física continua sendo a física V0.8
-    já aprovada nos testes.
+    A física é processada uma única vez por período.
+    Os perfis de DNA e ambiente são verificados em perfis_web.cjs.
     */
 
     const estagioAntes = vaso.cultivo.estagio;
