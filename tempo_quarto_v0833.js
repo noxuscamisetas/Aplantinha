@@ -75,6 +75,7 @@ function processarVasosPeriodoAtualV0833(
     */
 
     const estagioAntes = vaso.cultivo.estagio;
+    vaso.cultivo.localAtual = 'VASO';
 
     processarCultivoV080(
       vaso.cultivo,
@@ -107,6 +108,20 @@ function processarVasosPeriodoAtualV0833(
             contexto.luz
         };
 
+  }
+  for (const slot of estado.jardimV088?.slots || []) {
+    if (!slot.cultivo) continue;
+    const c = slot.cultivo;
+    c.localAtual = 'JARDIM';
+    c.velocidade = 1;
+    const antes = c.estagio;
+    processarCultivoV080(c, contexto);
+    sincronizarCultivoParaPlantaV083({ id: -slot.id, cultivo: c });
+    if (c.estagio !== antes) {
+      const texto = `Jardim ${slot.id}: ${NOMES_ESTAGIOS_CULTIVO[c.estagio] || c.estagio}.`;
+      c.historico ??= []; c.historico.unshift(texto); log(texto);
+    }
+    c.ultimoPeriodoProcessadoV0833 = { dia: contexto.dia, hora: contexto.hora, luz: contexto.luz };
   }
 
 }

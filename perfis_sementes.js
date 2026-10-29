@@ -6,7 +6,7 @@ function geneCultivo(cultivo, chave) {
 
 function luzEfetivaCultivo(cultivo, tempo) {
   if (tempo.luz !== 'SOL') return 'LUA';
-  return cultivo.luzAmbiente === 'SOMBRA' ? 'SOMBRA' : 'NATURAL';
+  return cultivo.localAtual !== 'JARDIM' && cultivo.luzAmbiente === 'SOMBRA' ? 'SOMBRA' : 'NATURAL';
 }
 
 function desenvolvimentoDoPerfil(cultivo, tempo, solo) {

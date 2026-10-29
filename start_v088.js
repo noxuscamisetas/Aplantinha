@@ -300,8 +300,9 @@ function moverVasoParaJardimV088(
     vaso.id;
 
 
-  slot.congeladoEm =
-    Date.now();
+  slot.congeladoEm = null;
+  slot.cultivo.localAtual = 'JARDIM';
+  slot.cultivo.velocidade = 1;
 
 
   vaso.cultivo =
@@ -411,6 +412,8 @@ function moverJardimParaVasoV088(
 
   vaso.cultivo =
     slot.cultivo;
+  vaso.cultivo.localAtual = 'VASO';
+  vaso.cultivo.velocidade = 1;
 
 
   slot.cultivo =
@@ -1199,7 +1202,7 @@ function htmlSlotJardimV088(
     >
 
       <span class="status-congelado-jardim-v088">
-        🧊
+        ☀️
       </span>
 
 
@@ -1221,7 +1224,7 @@ function htmlSlotJardimV088(
 
 
       <span class="texto-espera-jardim-v088">
-        Em espera
+        Água ${Math.round(c.umidade)}% · Saúde ${Math.round(c.saude)}%
       </span>
 
     </button>
@@ -1305,7 +1308,7 @@ function renderJardimV088() {
 
       <div class="status-jardim-v088">
 
-        🧊 ambiente em espera
+        ☀️ ambiente vivo
 
       </div>
 
@@ -1315,7 +1318,8 @@ function renderJardimV088() {
     <p class="descricao-jardim-v088">
 
       Transfira plantas para liberar vasos.
-      Nesta fase, o ambiente externo ainda não processa clima.
+      Aqui fora, as plantas acompanham o dia e a noite e continuam crescendo.
+      Toque em uma planta para cuidar dela.
 
     </p>
 

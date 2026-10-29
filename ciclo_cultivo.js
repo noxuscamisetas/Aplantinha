@@ -2,8 +2,11 @@
    Regras de produção/saúde/herança preservadas de app.js e health_v042.js. */
 
 function cultivoDoVaso(vasoId) {
+  if (vasoId < 0) return estado.jardimV088?.slots.find(s => s.id === -vasoId)?.cultivo;
   return estado.quartoV080?.vasos.find(vaso => vaso.id === vasoId)?.cultivo;
 }
+
+function nomeLocalDoCultivo(id) { return id < 0 ? `Jardim ${-id}` : `Vaso ${id}`; }
 
 function retratoDoCultivo(cultivo) {
   const tempo = tempoGlobalV080();
@@ -40,10 +43,11 @@ function colherCultivo(vasoId) {
   for (const [tipo, quantidade] of [["FRUTO", frutos], ["FLOR", flores]]) {
     estado.inventario[tipo] = (estado.inventario[tipo] || 0) + quantidade;
     for (let i = 0; i < quantidade; i++) {
-      criarObjetoColheitaV071(tipo, { cultivoId: cultivo.id, vaso: vasoId }, retrato);
+      criarObjetoColheitaV071(tipo, { cultivoId: cultivo.id, vaso: vasoId > 0 ? vasoId : null,
+        jardim: vasoId < 0 ? -vasoId : null, local: nomeLocalDoCultivo(vasoId) }, retrato);
     }
   }
-  const mensagem = `Vaso ${vasoId}: colheita de ${frutos} fruto(s) e ${flores} flor(es).`;
+  const mensagem = `${nomeLocalDoCultivo(vasoId)}: colheita de ${frutos} fruto(s) e ${flores} flor(es).`;
   cultivo.historico ??= [];
   cultivo.historico.unshift(mensagem);
   log(mensagem);
@@ -86,14 +90,15 @@ function gerarSementeDoCultivo(vasoId) {
     geracao, dna, alteracoes, linhagem,
     historiaMae: { ...structuredClone(historia), idade: cultivo.idade ?? cultivo.passosAmbientais,
       saudeFinal: cultivo.saude, cultivoId: cultivo.id },
-    procedencia: { cultivoId: cultivo.id, vaso: vasoId, dia: estado.tempo.dia,
+    procedencia: { cultivoId: cultivo.id, vaso: vasoId > 0 ? vasoId : null,
+      jardim: vasoId < 0 ? -vasoId : null, local: nomeLocalDoCultivo(vasoId), dia: estado.tempo.dia,
       hora: estado.tempo.hora }
   };
   // Marcar antes de salvar o objeto impede duplicação ao recarregar/renderizar.
   cultivo.sementeDnaGerada = true;
   cultivo.sementeDNA = structuredClone(semente);
   adicionarItemIndividualV070(semente);
-  log(`Vaso ${vasoId}: Semente-DNA G${geracao} guardada no inventário.`);
+  log(`${nomeLocalDoCultivo(vasoId)}: Semente-DNA G${geracao} guardada no inventário.`);
   if (typeof registrarNovidadeCultivo === "function") {
     registrarNovidadeCultivo(cultivo, "DNA", "Uma história pode continuar",
       `A Semente-DNA G${geracao} carrega a linhagem desta planta. Você pode plantá-la em outro vaso.`);

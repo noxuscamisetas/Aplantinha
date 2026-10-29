@@ -895,8 +895,11 @@ function atualizarEstagioV080(
 
 function processarCultivoV080(
   cultivo,
-  tempo
+  tempo,
+  opcoes = {}
 ) {
+  const fracao = opcoes.fracao ?? 1;
+  const local = opcoes.local === true;
 
   const dna =
     cultivo.dna
@@ -918,24 +921,24 @@ function processarCultivoV080(
     ] || QUARTO_V080.aceleracao[1];
 
   const estagioAnterior = cultivo.estagio;
-  cultivo.idade = (cultivo.idade ?? cultivo.passosAmbientais ?? 0) + 1;
+  if (!local) cultivo.idade = (cultivo.idade ?? cultivo.passosAmbientais ?? 0) + 1;
   cultivo.contadoresVida ??= {};
   const historia = cultivo.contadoresVida;
   for (const chave of ["sol", "lua", "repouso", "sombra", "seca",
     "soloRico", "excessoAgua", "luzForte"]) {
     historia[chave] ??= 0;
   }
-  historia[tempo.luz === "SOL" ? "sol" : "lua"]++;
-  if (tempo.luz === "LUA") historia.repouso++;
+  if (!local) historia[tempo.luz === "SOL" ? "sol" : "lua"]++;
+  if (!local && tempo.luz === "LUA") historia.repouso++;
   const luzEfetiva = luzEfetivaCultivo(cultivo, tempo);
   let mudouLuz = false;
-  if (luzEfetiva !== "LUA") {
+  if (!local && luzEfetiva !== "LUA") {
     if (luzEfetiva === "SOMBRA") historia.sombra++;
     mudouLuz = Boolean(cultivo.ultimaLuzDiurna && cultivo.ultimaLuzDiurna !== luzEfetiva);
     if (mudouLuz) historia.mudancasLuz = (historia.mudancasLuz || 0) + 1;
     cultivo.ultimaLuzDiurna = luzEfetiva;
   }
-  if (cultivo.solo.includes("ADITIVADO") || cultivo.solo === "SOLO_ORGANICO") {
+  if (!local && (cultivo.solo.includes("ADITIVADO") || cultivo.solo === "SOLO_ORGANICO")) {
     historia.soloRico++;
   }
 
@@ -946,7 +949,7 @@ function processarCultivoV080(
   ----------------------------------------------------------
   */
 
-  cultivo.passosAmbientais++;
+  if (!local) cultivo.passosAmbientais++;
 
 
   if (
@@ -954,13 +957,13 @@ function processarCultivoV080(
     "SOL"
   ) {
 
-    cultivo.exposicaoSol++;
+    if (!local) cultivo.exposicaoSol++;
 
   }
 
   else {
 
-    cultivo.exposicaoLua++;
+    if (!local) cultivo.exposicaoLua++;
 
   }
 
@@ -1006,7 +1009,7 @@ function processarCultivoV080(
       metabolismo
       *
       perfil.agua
-    );
+    ) * fracao;
 
 
   cultivo.consumoAgua +=
@@ -1021,8 +1024,8 @@ function processarCultivoV080(
       demanda
     );
 
-  if (cultivo.umidade < 25) historia.seca++;
-  if (cultivo.umidade > 78) historia.excessoAgua++;
+  if (!local && cultivo.umidade < 25) historia.seca++;
+  if (!local && cultivo.umidade > 78) historia.excessoAgua++;
 
 
   /*
@@ -1049,7 +1052,7 @@ function processarCultivoV080(
 
 
     cultivo.saude -=
-      dano;
+      dano * fracao;
 
   }
 
@@ -1063,7 +1066,7 @@ function processarCultivoV080(
         2
         -
         (dna.seca || 0)
-      );
+      ) * fracao;
 
   }
 
@@ -1072,7 +1075,7 @@ function processarCultivoV080(
   ) {
 
     cultivo.saude -=
-      2;
+      2 * fracao;
 
   }
 
@@ -1083,7 +1086,7 @@ function processarCultivoV080(
   ) {
 
     cultivo.saude +=
-      2;
+      2 * fracao;
 
   }
 
@@ -1189,12 +1192,12 @@ function processarCultivoV080(
   cultivo.energia +=
     ganho
     *
-    perfil.desenvolvimento;
+    perfil.desenvolvimento * fracao;
 
 
   // Saúde zero é colapso reversível, mas não permite crescer.
   if (cultivo.saude > 0) {
-    const crescimento = desenvolvimentoDoPerfil(cultivo, tempo, configSolo) * perfil.desenvolvimento;
+    const crescimento = desenvolvimentoDoPerfil(cultivo, tempo, configSolo) * perfil.desenvolvimento * fracao;
     cultivo.desenvolvimento = Math.round((cultivo.desenvolvimento + crescimento) * 10000) / 10000;
   }
 
@@ -1222,7 +1225,7 @@ function processarCultivoV080(
       cultivo.producaoPronta = true;
       cultivo.ciclosDesdeColheita = 0;
     } else if (!cultivo.producaoPronta) {
-      cultivo.ciclosDesdeColheita = (cultivo.ciclosDesdeColheita || 0) + 1;
+      cultivo.ciclosDesdeColheita = (cultivo.ciclosDesdeColheita || 0) + fracao;
       if (cultivo.ciclosDesdeColheita >= 3) {
         cultivo.producaoPronta = true;
         cultivo.ciclosDesdeColheita = 0;
@@ -1321,7 +1324,7 @@ function iniciarRegaV080(
 ) {
 
   const vaso =
-    estado.quartoV080.vasos.find(
+    vasoId < 0 ? { cultivo: cultivoDoVaso(vasoId) } : estado.quartoV080.vasos.find(
       v =>
         v.id === vasoId
     );
@@ -1349,7 +1352,7 @@ function iniciarRegaV080(
     () => {
 
       const atual =
-        estado.quartoV080.vasos.find(
+        regandoV080 < 0 ? { cultivo: cultivoDoVaso(regandoV080) } : estado.quartoV080.vasos.find(
           v =>
             v.id === regandoV080
         );

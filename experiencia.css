@@ -195,6 +195,40 @@ body:has(.overlay-interno-v082 > .janela-contextual-v082) #botaoInventarioV0861 
 #abrirBancada { border-radius: 14px; min-height: 46px; cursor: pointer; }
 #abrirLoja { cursor: pointer; min-height: 44px; font: inherit; }
 #abrirLoja:hover { background: #edd79c; }
+#painelTempoVivo { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; padding: 14px 18px; margin-bottom: 18px; border: 1px solid #b6c2a0; border-radius: 16px; background: #eff0de; color: #354b36; }
+#painelTempoVivo > div:first-child { flex: 1; min-width: 190px; }
+#painelTempoVivo strong, #estadoTempoVivo { display: block; }
+#estadoTempoVivo { margin-top: 5px; font-size: 12px; }
+#painelTempoVivo button { min-height: 44px; cursor: pointer; }
+.trilha-tempo-vivo { flex-basis: 100%; height: 5px; border-radius: 8px; overflow: hidden; background: #d4dbc5; }
+.trilha-tempo-vivo i { display: block; height: 100%; width: 100%; transform: scaleX(0); transform-origin: left; background: #78935d; }
+.tempo-andando .trilha-tempo-vivo i { animation: periodo-mundo-vivo linear infinite; }
+@keyframes periodo-mundo-vivo { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.progresso-cultivo-vivo { width: 100%; padding: 10px 12px; box-sizing: border-box; color: #425e39; text-align: left; }
+.progresso-cultivo-vivo span { display: block; margin-bottom: 6px; font-size: 11px; line-height: 1.4; }
+.progresso-cultivo-vivo progress { display: block; width: 100%; height: 8px; border: 0; border-radius: 8px; overflow: hidden; background: #d3dcc3; accent-color: #739251; }
+.progresso-cultivo-vivo progress::-webkit-progress-bar { background: #d3dcc3; }
+.progresso-cultivo-vivo progress::-webkit-progress-value { background: #739251; transition: width .35s linear; }
+.cena-planta-v084 > .progresso-cultivo-vivo { order: 10; background: #edf0dd; }
+.relogio-planta-vivo { position: absolute; right: 16px; top: 56px; font-size: 34px; width: 38px; height: 38px; line-height: 38px; text-align: center; color: #537144; opacity: 0; pointer-events: none; }
+.planta-acelerando .relogio-planta-vivo { opacity: 1; animation: relogio-planta-gira 1s linear infinite; }
+@keyframes relogio-planta-gira { to { transform: rotate(360deg); } }
+#aceleracaoLocalViva button { width: 100%; min-height: 58px; touch-action: none; user-select: none; cursor: pointer; background: #e4d5a8; color: #55472d; font-weight: 700; }
+#aceleracaoLocalViva button[aria-pressed="true"] { background: #bccc91; color: #354b36; }
+#aceleracaoLocalViva p { color: #56654c; font-size: 12px; line-height: 1.5; }
+.cena-planta-v084 > #aceleracaoLocalViva { order: 8; align-self: stretch; margin: 10px 12px; }
+.cena-planta-v084 > #momentoCultivo { order: 12; }
+@media (min-width: 821px) { .cena-planta-v084:has(#aceleracaoLocalViva) { height: auto; } }
+.jardim-vivo-modal { box-sizing: border-box; width: min(520px, calc(100vw - 28px)); max-height: calc(100dvh - 28px); overflow: auto; padding: 22px; border: 1px solid #aaba94; border-radius: 22px; background: #f5f3e4; color: #354b36; }
+.jardim-vivo-modal::backdrop { background: #33483180; }
+.jardim-vivo-modal header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.jardim-vivo-modal h2 { font-size: 20px; }
+.jardim-vivo-modal button { min-height: 44px; cursor: pointer; }
+.palco-jardim-vivo { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 330px; padding: 10px; border-radius: 16px; background: radial-gradient(ellipse at 40% 5%, #fff6c9, transparent 65%), #d9e4c8; }
+.acoes-jardim-vivo { display: grid; gap: 10px; }
+#regarJardimVivo { touch-action: none; user-select: none; background: #deebdf; }
+.estado-planta-jardim, .jardim-vivo-modal > p { line-height: 1.5; font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .planta-acelerando .relogio-planta-vivo { animation: none; } .tempo-andando .trilha-tempo-vivo i { animation: none; } }
 .perfil-semente { font-size: 12px; line-height: 1.45; color: #53644b; display: block; }
 .escolha-luz-cultivo { display: flex; gap: 8px; margin: 12px 0; }
 .escolha-luz-cultivo button { flex: 1; min-height: 44px; cursor: pointer; }
