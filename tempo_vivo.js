@@ -1,5 +1,6 @@
 /* Um relógio para o mundo; impulso local apenas enquanto o jogador segura. */
-const PERIODO_REAL_VIVO = 12000;
+const PERIODO_REAL_VIVO = 30000;
+const IMPULSO_LOCAL_VIVO = 1;
 const tempoVivo = { andando: false, timer: null, proximo: 0, impulso: null, vaso: null, planta: null, ultimoPulso: 0 };
 
 function progressoDoCultivo(c) {
@@ -60,7 +61,7 @@ function iniciarAceleracaoViva(vasoId) {
     if (document.hidden || !tempoVivo.andando || ambienteAtualV081 !== 'ESTACAO' || vasoSelecionadoV081 !== vasoId || c !== tempoVivo.planta) { pararAceleracaoViva(); return; }
     const agora = performance.now();
     // Sem compensação de atrasos: conta somente o tempo efetivamente segurado.
-    const fracao = Math.min(1000, Math.max(0, agora - tempoVivo.ultimoPulso)) * 2 / PERIODO_REAL_VIVO;
+    const fracao = Math.min(1000, Math.max(0, agora - tempoVivo.ultimoPulso)) * IMPULSO_LOCAL_VIVO / PERIODO_REAL_VIVO;
     tempoVivo.ultimoPulso = agora;
     const fase = c.estagio; const pronta = c.producaoPronta;
     const aguaAntes = classeAguaV080(c.umidade);

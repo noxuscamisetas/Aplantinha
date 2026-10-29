@@ -16,6 +16,9 @@ Na estação de cada vaso, escolha luz natural ou sombra. A escolha vale durante
 
 ## Tempo e Jardim
 
-O relógio avança sozinho um período de seis horas a cada 12 segundos reais, no laboratório e no Jardim. Use Pausar mundo para interromper. Ao sair da aba ou recarregar, o tempo pausa sem acumular períodos ausentes.
+O relógio avança sozinho um período de seis horas a cada 30 segundos reais, no laboratório e no Jardim. Use Pausar mundo para interromper. Ao sair da aba ou recarregar, o tempo pausa sem acumular períodos ausentes.
 
 Segure Acelerar junto à planta para acelerar apenas aquele cultivo, inclusive seu consumo de água; solte para parar. As barras mostram o próximo estágio ou colheita. No Jardim, as plantas continuam vivendo e podem ser regadas, colhidas e fornecer sua Semente-DNA antes de voltar a um vaso livre.
+
+
+Ritmo inicial ajustado: a aceleração sustentada aproxima 2× o cultivo, com consumo de água correspondente. O equilíbrio continua sendo acompanhado por testes.
